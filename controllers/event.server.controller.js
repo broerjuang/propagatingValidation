@@ -12,7 +12,7 @@ module.exports = {
     Event
     .create(eventDetail)
     .then(detail => res.json(detail))
-    .catch(err => res.json({message: 'the name must be unique'}))
+    .catch(err => res.json({message: 'the message must be unique'}))
   },
 
   list: (req, res) => {

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>validation</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- jquery -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div id="error"></div>
+            <h3 class="text-center">hallo</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- / modal -->
+
+    <button type="button" name="button" onclick="active()">show</button>
+
+    <form action="">
+      <input type="text" id="name-input" placeholder="your name, Ex : Juang">
+      <input type="text" id="email-input" placeholder="Must Email, Ex : Juang@gmail.com">
+      <input type="text" id="date-input" placeholder="Must date, Ex : 12-12-2017">
+      <input type="text" id="desc-input" placeholder="Must Phone, Ex : 08xxxxxxx">
+      <button type="button" name="button" onclick="createUser()"></button>
+    </form>
+
+    <script type="text/javascript">
+
+    function active(){
+      $('#myModal').modal('show')
+    }
+
+    function createUser(){
+      $.ajax({
+        url:  "http://localhost:3000/api/events",
+        method: 'post',
+        contentType: 'application/x-www-form-urlencoded',
+        data : {
+          name : $('#name-input').val(),
+          email : $('#email-input').val(),
+          date : $('#email-input').val(),
+          phone : $('#phone-input').val()
+        },
+        success: function(data) {
+        },
+        error: function(err){
+          $('#remove-input').remove();
+          $('#error').append(`<div id="remove-input"><h3 class="text-center">${data.message}</h3></div>`);
+          $('#myModal').modal('show');
+        }
+      })
+    } // create data function
+
+    </script>
+  </body>
+</html>

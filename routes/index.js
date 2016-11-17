@@ -8,17 +8,17 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET All Event. */
-router.get('/event', EventController.list);
+router.get('/events', EventController.list);
 
 /* POST Event */
-router.post('/event', EventController.create)
+router.post('/events', EventController.create)
 
 /* GET Event By Id */
-router.get('/event/:id', EventController.findById)
+router.get('/events/:id', EventController.findById)
 
 /* PUT event By its id */
-router.put('/event/:id', EventController.update)
+router.put('/events/:id', EventController.update)
 
 /* Delete event By its id */
-router.put('/event/:id', EventController.update)
+router.delete('/event/:id', EventController.update)
 module.exports = router;

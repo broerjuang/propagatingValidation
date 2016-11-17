@@ -9,9 +9,10 @@ module.exports = {
       date: req.body.date,
       email : req.body.email
     }
-    Event.create(eventDetail)
+    Event
+    .create(eventDetail)
     .then(detail => res.json(detail))
-    .catch(err => res.json(err))
+    .catch(err => res.json({message: 'the name must be unique'}))
   },
 
   list: (req, res) => {
@@ -48,8 +49,9 @@ module.exports = {
   },
 
   delete: (req, res) => {
-    Event.findOneAndRemove({_id: req.params.id})
-      .then(() => Event.find()))
+    Event
+      .findOneAndRemove({_id: req.params.id})
+      .then(() => Event.find())
       .then(result => res.json(result))
       .catch(err => res.json(err))
   }
